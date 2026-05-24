@@ -1,0 +1,6 @@
+{
+  "name": "与书",
+  "description": "「尺素寸心，见字如面。」一个以传统“书信”为核心载体的在线创作、AI润色与古典书信文化体验空间。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

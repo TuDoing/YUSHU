@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/* Traditional Vertical Writing Class */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Custom Letter Pad Red/Grey Column Lines (Vertical Layout Grid) */
+.vertical-lines-grid {
+  background-image: linear-gradient(to left, rgba(196, 58, 49, 0.15) 1px, transparent 1px);
+  background-size: 2.2rem 100%;
+  line-height: 2.2rem;
+}
+
+.vertical-lines-grid-grey {
+  background-image: linear-gradient(to left, rgba(140, 123, 101, 0.12) 1px, transparent 1px);
+  background-size: 2.22rem 100%;
+  line-height: 2.22rem;
+}
+
+.vertical-lines-grid-green {
+  background-image: linear-gradient(to left, rgba(82, 120, 82, 0.22) 1px, transparent 1px);
+  background-size: 2.22rem 100%;
+  line-height: 2.22rem;
+}
+
+.vertical-lines-grid-double-red {
+  background-image: 
+    linear-gradient(to left, rgba(196, 58, 49, 0.2) 1px, transparent 1px),
+    linear-gradient(to left, rgba(196, 58, 49, 0.08) 2px, transparent 2px);
+  background-size: 2.22rem 100%, 1.11rem 100%;
+  line-height: 2.22rem;
+}
+
+/* Custom Letter Pad Red/Grey Row Lines (Horizontal Layout Row) */
+.horizontal-lines-grid {
+  background-image: linear-gradient(rgba(196, 58, 49, 0.15) 1px, transparent 1px);
+  background-size: 100% 2rem;
+  line-height: 2rem;
+}
+
+.horizontal-lines-grid-grey {
+  background-image: linear-gradient(rgba(140, 123, 101, 0.12) 1px, transparent 1px);
+  background-size: 100% 2.1rem;
+  line-height: 2.1rem;
+}
+
+.horizontal-lines-grid-green {
+  background-image: linear-gradient(rgba(82, 120, 82, 0.22) 1px, transparent 1px);
+  background-size: 100% 2.1rem;
+  line-height: 2.1rem;
+}
+
+.horizontal-lines-grid-vermilion-box {
+  background-image: 
+    linear-gradient(rgba(196, 58, 49, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 58, 49, 0.1) 1px, transparent 1px);
+  background-size: 2rem 2rem, 2rem 2rem;
+  line-height: 2rem;
+}
+
+/* Subtle traditional bamboo backdrop texture overlay */
+.bamboo-bg-overlay {
+  background-image: radial-gradient(circle at 10% 20%, rgba(58, 107, 58, 0.02) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+/* --- 6 Beautiful Paper Background Textures --- */
+.paper-tex-pure-xuan {
+  background-color: #fcfbf9 !important;
+  background-image: radial-gradient(rgba(230, 226, 214, 0.3) 1px, transparent 1px) !important;
+  background-size: 18px 18px !important;
+}
+
+.paper-tex-antique-tea {
+  background-color: #f3edd8 !important;
+  background-image: radial-gradient(circle at 50% 50%, rgba(234, 223, 193, 0.4) 0%, rgba(0,0,0,0) 80%), radial-gradient(circle at 10% 20%, rgba(215, 202, 168, 0.2) 0%, rgba(0,0,0,0) 70%) !important;
+}
+
+.paper-tex-gold-flecks {
+  background-color: #ebdcb9 !important;
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(212, 175, 55, 0.35) 2.5px, transparent 2.5px),
+    radial-gradient(circle at 82% 78%, rgba(201, 160, 48, 0.4) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 45% 65%, rgba(184, 140, 32, 0.3) 2px, transparent 2px),
+    radial-gradient(circle at 63% 25%, rgba(220, 185, 75, 0.45) 3px, transparent 3px),
+    radial-gradient(circle at 90% 15%, rgba(190, 150, 40, 0.25) 2px, transparent 2px),
+    radial-gradient(circle at 25% 85%, rgba(212, 175, 55, 0.35) 1.5px, transparent 1.5px) !important;
+  background-size: 140px 140px !important;
+}
+
+.paper-tex-linen-weave {
+  background-color: #faf6ed !important;
+  background-image: 
+    linear-gradient(rgba(184, 150, 62, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 150, 62, 0.04) 1px, transparent 1px) !important;
+  background-size: 6px 6px !important;
+}
+
+.paper-tex-cooked-xuan {
+  background-color: #f7f1e5 !important;
+  background-image: 
+    radial-gradient(circle at 30% 20%, rgba(200, 180, 150, 0.2) 0%, rgba(0, 0, 0, 0) 60%),
+    repeating-linear-gradient(90deg, rgba(140, 120, 90, 0.015) 0px, rgba(140, 120, 90, 0.015) 1px, transparent 1px, transparent 24px) !important;
+}
+
+.paper-tex-cloud-mica {
+  background-color: #f1f2f5 !important;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(130, 142, 160, 0.1) 0%, rgba(0,0,0,0) 65%),
+    radial-gradient(circle at 85% 65%, rgba(110, 120, 140, 0.08) 0%, rgba(0,0,0,0) 70%),
+    repeating-linear-gradient(45deg, rgba(0,0,20,0.006) 0px, rgba(0,0,20,0.006) 1.5px, transparent 1.5px, transparent 12px) !important;
+}
+
+.paper-tex-fibrous-parchment {
+  background-color: #f4efdf !important;
+  background-image: 
+    /* Water ink mottles */
+    radial-gradient(circle at 15% 20%, rgba(162, 142, 115, 0.08) 0%, rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 80% 75%, rgba(150, 125, 95, 0.07) 0%, rgba(0,0,0,0) 65%),
+    /* Organic long wood-fiber specks */
+    radial-gradient(circle at 18% 42%, rgba(100, 75, 45, 0.15) 1.2px, transparent 1.8px),
+    radial-gradient(circle at 75% 22%, rgba(90, 68, 40, 0.18) 1px, transparent 1.5px),
+    radial-gradient(circle at 58% 82%, rgba(115, 85, 55, 0.2) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 40% 55%, rgba(110, 80, 50, 0.1) 2px, transparent 3px),
+    radial-gradient(circle at 85% 12%, rgba(98, 72, 44, 0.16) 1px, transparent 1.8px),
+    radial-gradient(circle at 12% 88%, rgba(120, 90, 60, 0.14) 1.5px, transparent 2.2px),
+    /* Soft parchment fibrous noise weave */
+    repeating-linear-gradient(45deg, rgba(139, 115, 85, 0.008) 0px, rgba(139, 115, 85, 0.008) 1px, transparent 1px, transparent 15px),
+    repeating-linear-gradient(-45deg, rgba(139, 115, 85, 0.008) 0px, rgba(139, 115, 85, 0.008) 1px, transparent 1px, transparent 15px) !important;
+  background-size: 100% 100%, 100% 100%, 220px 220px, 160px 160px, 310px 310px, 260px 260px, 190px 190px, 230px 230px, 16px 16px, 16px 16px !important;
+}
+
+.paper-tex-mottled-parchment {
+  background-color: #ebdcb9 !important;
+  background-image: 
+    /* Massive antique water staining */
+    radial-gradient(circle at 50% 50%, rgba(150, 115, 75, 0.22) 0%, rgba(0,0,0,0) 80%),
+    radial-gradient(circle at 8% 12%, rgba(120, 90, 55, 0.18) 0%, rgba(0,0,0,0) 50%),
+    radial-gradient(circle at 92% 88%, rgba(130, 100, 65, 0.16) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(circle at 82% 18%, rgba(110, 85, 50, 0.14) 0%, rgba(0,0,0,0) 40%),
+    /* Aged burnt vintage spots */
+    radial-gradient(circle at 35% 62%, rgba(85, 55, 25, 0.22) 2px, transparent 3.5px),
+    radial-gradient(circle at 68% 38%, rgba(75, 45, 18, 0.18) 1.5px, transparent 2.8px),
+    /* Small pulp spots */
+    radial-gradient(circle at 12% 78%, rgba(90, 65, 38, 0.14) 1.5px, transparent 2.2px),
+    radial-gradient(circle at 88% 22%, rgba(90, 65, 38, 0.14) 1.5px, transparent 2.2px) !important;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 250px 250px, 300px 300px, 130px 130px, 130px 130px !important;
+}
+
+/* Scrollbar customizations to look like ancient scroll or modern editorial minimalism */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(240, 237, 230, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: #c4c0b5;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8c887d;
+}
+
+/* Star blink pulse animation */
+@keyframes star-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+.animate-star {
+  animation: star-blink 3s infinite ease-in-out;
+}

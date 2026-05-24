@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Common helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Validation for UserProfile
+    function isValidUserProfile(data) {
+      return data.uid is string && data.uid.size() <= 128
+          && data.name is string && data.name.size() <= 128
+          && data.email is string && data.email.size() <= 200
+          && (data.title == null || (data.title is string && data.title.size() <= 128))
+          && (data.signature == null || (data.signature is string && data.signature.size() <= 1000))
+          && (data.hometown == null || (data.hometown is string && data.hometown.size() <= 200))
+          && (data.avatarId == null || (data.avatarId is string && data.avatarId.size() <= 50))
+          && (data.joinedDate == null || (data.joinedDate is string && data.joinedDate.size() <= 128));
+    }
+
+    // Validation for SavedLetter
+    function isValidSavedLetter(data) {
+      return data.id is string && data.id.size() <= 128
+          && data.envelopeId is string && data.envelopeId.size() <= 128
+          && data.userId is string && data.userId.size() <= 128
+          && data.versionName is string && data.versionName.size() <= 128
+          && (data.title == null || (data.title is string && data.title.size() <= 200))
+          && (data.recipient == null || (data.recipient is string && data.recipient.size() <= 200))
+          && (data.content == null || (data.content is string && data.content.size() <= 30000))
+          && (data.sender == null || (data.sender is string && data.sender.size() <= 200))
+          && (data.date == null || (data.date is string && data.date.size() <= 128))
+          && (data.templateId == null || (data.templateId is string && data.templateId.size() <= 128))
+          && (data.illustrationType == null || (data.illustrationType is string && data.illustrationType.size() <= 128))
+          && data.savedAt is string && data.savedAt.size() <= 128;
+    }
+
+    // Matches
+    match /users/{userId} {
+      allow read: if isSignedIn() && userId == request.auth.uid;
+      allow create, update: if isSignedIn() && userId == request.auth.uid && isValidUserProfile(request.resource.data);
+      allow delete: if isSignedIn() && userId == request.auth.uid;
+    }
+
+    match /users/{userId}/letters/{letterId} {
+      allow read: if isSignedIn() && userId == request.auth.uid;
+      allow create, update: if isSignedIn() && userId == request.auth.uid && isValidSavedLetter(request.resource.data);
+      allow delete: if isSignedIn() && userId == request.auth.uid;
+    }
+  }
+}

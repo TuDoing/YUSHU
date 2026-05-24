@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information including nickname, title, and bio signature.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase user UID" },
+        "name": { "type": "string", "description": "Nickname of the user" },
+        "title": { "type": "string", "description": "Literary title of the user" },
+        "email": { "type": "string", "description": "Email address of the user" },
+        "signature": { "type": "string", "description": "Aged bio/signature quote" },
+        "hometown": { "type": "string", "description": "Home location/dynasty dwelling" },
+        "avatarId": { "type": "string", "description": "Avatar index number" },
+        "joinedDate": { "type": "string", "description": "Date user joined or initialized" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      },
+      "required": ["uid", "name", "email"]
+    },
+    "SavedLetter": {
+      "title": "SavedLetter",
+      "description": "Saved version of progress of an artistic letter within an envelope.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique version ID" },
+        "envelopeId": { "type": "string", "description": "Common envelope ID to group historical versions" },
+        "userId": { "type": "string", "description": "The creator UID" },
+        "versionName": { "type": "string", "description": "Label for the version (版本一, 版本二, 版本三)" },
+        "title": { "type": "string", "description": "Heading/Title of the correspondence" },
+        "recipient": { "type": "string", "description": "Recipient salutation" },
+        "content": { "type": "string", "description": "Core body text" },
+        "sender": { "type": "string", "description": "Sender signature" },
+        "date": { "type": "string", "description": "Lunar/dynasty date written" },
+        "templateId": { "type": "string", "description": "Template layout preset ID" },
+        "illustrationType": { "type": "string", "description": "Background watermark motif" },
+        "savedAt": { "type": "string", "description": "Timestamp when saved" }
+      },
+      "required": ["id", "envelopeId", "userId", "versionName", "content", "savedAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "User profiles stored in Firestore, keyed by authenticated user ID."
+    },
+    "users/{userId}/letters/{letterId}": {
+      "schema": { "$ref": "SavedLetter" },
+      "description": "Artistic letters corresponding to a user, stored in a subcollection."
+    }
+  }
+}
