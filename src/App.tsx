@@ -33,7 +33,8 @@ import {
   User as UserIcon,
   LogOut,
   History,
-  UserCheck
+  UserCheck,
+  Github
 } from "lucide-react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
@@ -61,6 +62,7 @@ import {
   signOut, 
   signInWithPopup, 
   GoogleAuthProvider, 
+  GithubAuthProvider, 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword,
   updateProfile,
@@ -731,6 +733,18 @@ export default function App() {
     } catch (err: any) {
       console.error(err);
       setAuthError("Google 快捷登阁受阻，多因沙盒浏览器或网络所致。可使用邮箱注册登入。");
+    }
+  };
+
+  const handleGithubLogin = async () => {
+    setAuthError(null);
+    try {
+      const provider = new GithubAuthProvider();
+      await signInWithPopup(auth, provider);
+      triggerToast("GitHub 雅客快捷配对成功，已登临墨阁。");
+    } catch (err: any) {
+      console.error(err);
+      setAuthError("GitHub 快捷登阁受阻，多因沙盒浏览器或网络所致。可使用邮箱注册登入。");
     }
   };
 
@@ -3050,9 +3064,35 @@ export default function App() {
                         required
                         value={authEmail}
                         onChange={(e) => setAuthEmail(e.target.value)}
-                        className="w-full px-2 py-1 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#c43a31] bg-[#fdfdfc]"
-                        placeholder="yourname@gmail.com"
+                        className="w-full px-2 py-1 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#c43a31] bg-[#fdfdfc] text-xs"
+                        placeholder="例如 mail@qq.com 或 master@github.com"
                       />
+                      {/* Suffix Assistants */}
+                      <div className="mt-1 flex flex-wrap gap-1 items-center">
+                        <span className="text-[9px] text-[#8c887d] font-serif">快速后缀：</span>
+                        {[
+                          { suffix: "@qq.com", label: "QQ邮箱" },
+                          { suffix: "@github.com", label: "GitHub" },
+                          { suffix: "@gmail.com", label: "Gmail" },
+                          { suffix: "@163.com", label: "163网易" }
+                        ].map((item) => (
+                          <button
+                            key={item.suffix}
+                            type="button"
+                            onClick={() => {
+                              const idx = authEmail.indexOf("@");
+                              if (idx === -1) {
+                                setAuthEmail(authEmail + item.suffix);
+                              } else {
+                                setAuthEmail(authEmail.substring(0, idx) + item.suffix);
+                              }
+                            }}
+                            className="px-1.5 py-0.5 text-[9px] bg-[#f5ede0]/50 hover:bg-[#c43a31]/10 hover:text-[#c43a31] text-[#5a554a] border border-[#e0ddd5]/80 rounded transition-colors font-serif"
+                          >
+                            {item.label}
+                          </button>
+                        ))}
+                      </div>
                     </div>
 
                     <div>
@@ -3087,14 +3127,25 @@ export default function App() {
                     <div className="flex-grow border-t border-[#f0ede6]"></div>
                   </div>
 
-                  {/* Google Authentications */}
-                  <button
-                    onClick={handleGoogleLogin}
-                    type="button"
-                    className="w-full bg-white hover:bg-neutral-50 text-[10px] py-1 px-2 border border-gray-300 rounded shadow-2xs font-serif flex items-center justify-center space-x-1 transition-colors"
-                  >
-                    <span>🌟 Google 帐号快捷登临</span>
-                  </button>
+                  {/* Google & GitHub Authentications */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={handleGoogleLogin}
+                      type="button"
+                      className="bg-[#fafafa] hover:bg-neutral-50 text-[10px] py-2 px-1 border border-gray-300 rounded shadow-3xs font-serif flex items-center justify-center space-x-1.5 transition-colors"
+                    >
+                      <span className="text-sm">🌟</span>
+                      <span className="font-bold text-[#5c544d]">Google 登临</span>
+                    </button>
+                    <button
+                      onClick={handleGithubLogin}
+                      type="button"
+                      className="bg-[#fafafa] hover:bg-neutral-50 text-[10px] py-2 px-1 border border-gray-300 rounded shadow-3xs font-serif flex items-center justify-center space-x-1.5 transition-colors animate-pulse hover:animate-none"
+                    >
+                      <Github className="w-3.5 h-3.5 text-[#333]" />
+                      <span className="font-bold text-[#5c544d]">GitHub 登临</span>
+                    </button>
+                  </div>
                   
                   <div className="mt-3 pt-2 border-t border-dashed border-[#e0ddd5] text-[9.5px] text-gray-400 text-center leading-relaxed font-serif">
                     您当前已散客身份于此挥墨。
